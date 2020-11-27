@@ -15,12 +15,14 @@
 // 2. Completion of search functionality
 // 3. Completion of provider detail functionality
 
-import React, { useState, useEffect } from 'react';
-import { fetchDetails } from '../../actions/search';
+// Notes:
+// not sure organization name property in search input is correct as I don't see organization property in the response object
+
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { createUseStyles } from 'react-jss';
 import SearchForm from './SearchForm';
 import SearchResult from './SearchResult';
-import UserDetails from './UserDetails';
-import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
 	container: {
@@ -32,28 +34,21 @@ const useStyles = createUseStyles({
 
 function ClientSearchContainer() {
 	const classes = useStyles();
+	const history = useHistory();
 	const [list, setList] = useState([]);
-	const [details, setDetails] = useState({});
 
 	const handleResp = resp => {
 		setList(resp);
 	};
 
 	const onSelection = async id => {
-		const resp = await fetchDetails(id);
-		setDetails(resp);
+		history.push(`/user-details/${id}`);
 	};
-	// useEffect(() => {
-	// 	return () => {
-
-	// 	};
-	// }, [list]);
 
 	return (
 		<div className={classes.container}>
 			<SearchForm handleResp={handleResp} />
 			<SearchResult list={list} onSelection={onSelection} />
-			<UserDetails details={details} />
 		</div>
 	);
 }

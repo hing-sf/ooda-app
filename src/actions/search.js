@@ -14,4 +14,13 @@ export const searchClient = async params => {
 	}
 };
 
-export const fetchDetails = async () => {};
+export const fetchDetails = async number => {
+	const url = `https://npiregistry.cms.hhs.gov/api/?number=${number}&version=2.0`;
+
+	try {
+		const res = await axios.get(url);
+		return res.data.results[0];
+	} catch (err) {
+		console.log('err', err);
+	}
+};
