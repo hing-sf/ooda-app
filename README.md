@@ -1,4 +1,4 @@
-# install Moesif CORS Chrome extension to bypass CORS error when making API request.
+### install Moesif CORS Chrome extension to bypass CORS error when making API request.
 
 https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc?hl=en-US
 after extension is installed, turn on extenstion.
